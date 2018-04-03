@@ -10,6 +10,7 @@ protoc = generator(protoc_bin,
 dependencies += [
   dependency('threads'),
   dependency('libcrypto'),
+  dependency('libsodium'),
   dependency('protobuf'),
 ]
 
@@ -54,10 +55,6 @@ protobuf_sources = [
 ]
 
 sources = [
-  'external/curve25519-donna/curve25519.c',
-  'external/curve25519-donna/curve25519_VALVE_sse2.c',
-  'external/ed25519-donna/ed25519_VALVE.c',
-  'external/ed25519-donna/ed25519_VALVE_sse2.c',
   'common/crypto.cpp',
   'common/opensslwrapper.cpp',
   'common/steamid.cpp',

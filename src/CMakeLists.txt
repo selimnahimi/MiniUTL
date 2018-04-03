@@ -1,5 +1,6 @@
 find_package(Protobuf REQUIRED)
 find_package(OpenSSL REQUIRED)
+find_package(sodium REQUIRED)
 find_package(Threads REQUIRED)
 
 include(CheckCCompilerFlag)
@@ -12,10 +13,6 @@ set(GNS_PROTOS
 )
 
 set(GNS_SRCS
-	"external/curve25519-donna/curve25519.c"
-	"external/curve25519-donna/curve25519_VALVE_sse2.c"
-	"external/ed25519-donna/ed25519_VALVE.c"
-	"external/ed25519-donna/ed25519_VALVE_sse2.c"
 	"common/crypto.cpp"
 	"common/opensslwrapper.cpp"
 	"common/steamid.cpp"
@@ -89,6 +86,8 @@ macro(gamenetworkingsockets_common GNS_TARGET)
 		# Only necessary if we're not using protobuf::libprotobuf
 		# But that's not supported until CMake 3.9
 		${Protobuf_INCLUDE_DIRS}
+
+		${sodium_INCLUDE_DIR}
 	)
 
 	target_link_libraries(${GNS_TARGET} PRIVATE
@@ -96,6 +95,7 @@ macro(gamenetworkingsockets_common GNS_TARGET)
 		${PROTOBUF_LIBRARIES}
 		OpenSSL::Crypto
 		Threads::Threads
+		${sodium_LIBRARY_RELEASE}
 	)
 
 	target_compile_definitions(${GNS_TARGET} PRIVATE

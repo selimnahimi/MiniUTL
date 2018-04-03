@@ -8,6 +8,7 @@
 #include <thread>
 #include <mutex>
 #include <atomic>
+#include <sodium.h>
 
 #include "steamnetworkingsockets_lowlevel.h"
 #include "../steamnetworkingsockets_internal.h"
@@ -1568,6 +1569,10 @@ bool BSteamNetworkingSocketsInitCommon( SteamDatagramErrMsg &errMsg )
 
 	if ( s_bSteamDatagramInitted )
 		return true;
+
+	// Init libsodium
+	if (sodium_init() < 0)
+		return false;
 
 	// Init sockets
 	#ifdef _WIN32
