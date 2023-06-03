@@ -155,7 +155,7 @@ template <> inline bool CDefOps<char *>::LessFunc( char * const &lhs, char * con
 template <typename RBTREE_T>
 void SetDefLessFunc( RBTREE_T &RBTree )
 {
-#if _MSC_VER < 1600
+#if defined( _MSC_VER ) && _MSC_VER < 1600
 	RBTree.SetLessFunc( DefLessFunc( RBTREE_T::KeyType_t ) );
 #else
 	RBTree.SetLessFunc( DefLessFunc( typename RBTREE_T::KeyType_t ) );
