@@ -15,7 +15,6 @@
 #include <ctype.h>
 
 #if defined(_MSC_VER)
-	#define FORCEINLINE			    __forceinline
 	#define FMTFUNCTION( x, y )
 #else
 	#if defined(__GNUC__)
@@ -24,14 +23,8 @@
 		#else
 			#define FMTFUNCTION( fmtargnumber, firstvarargnumber ) __attribute__ (( format( __printf__, fmtargnumber, firstvarargnumber )))
 		#endif
-		#if __GNUC__ >= 4
-			#define FORCEINLINE          inline __attribute__ ((always_inline))
-		#else
-			#define FORCEINLINE inline
-		#endif
 		#define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 	#else
-		#define FORCEINLINE          inline
 		#define PRINTF_FORMAT_STRING
 		#define FMTFUNCTION( x, y )
 	#endif
@@ -148,7 +141,7 @@ inline void Error( const char *msg )
 // This is the preferred Min operator. Using the MIN macro can lead to unexpected
 // side-effects or more expensive code.
 template< class T >
-static FORCEINLINE T const & Min( T const &val1, T const &val2 )
+static inline T const & Min( T const &val1, T const &val2 )
 {
 	return val1 < val2 ? val1 : val2;
 }
@@ -156,7 +149,7 @@ static FORCEINLINE T const & Min( T const &val1, T const &val2 )
 // This is the preferred Max operator. Using the MAX macro can lead to unexpected
 // side-effects or more expensive code.
 template< class T >
-static FORCEINLINE T const & Max( T const &val1, T const &val2 )
+static inline T const & Max( T const &val1, T const &val2 )
 {
 	return val1 > val2 ? val1 : val2;
 }
