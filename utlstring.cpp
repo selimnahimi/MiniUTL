@@ -10,6 +10,7 @@
 #pragma warning (disable:4514)
 #endif
 
+#define _GNU_SOURCE 1 // need for vasprintf
 #include "utlstring.h"
 #include "utlvector.h"
 #include "winlite.h"
