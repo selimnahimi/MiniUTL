@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdint.h>
 
 #if defined(_MSC_VER)
 	#define FMTFUNCTION( x, y )
@@ -155,34 +156,6 @@ static inline T const & Max( T const &val1, T const &val2 )
 }
 
 #define V_ARRAYSIZE( arr ) ( sizeof((arr)) / sizeof((arr)[0]) )
-
-#if _MSC_VER == 1200
-// msvc6 only targets win32
-typedef char int8;
-typedef unsigned char uint8;
-
-typedef short int16;
-typedef unsigned short uint16;
-
-typedef int int32;
-typedef unsigned int uint32;
-
-typedef __int64 int64;
-typedef unsigned __int64 uint64;
-#else
-#include <stdint.h>
-typedef int8_t int8;
-typedef uint8_t uint8;
-
-typedef int16_t int16;
-typedef uint16_t uint16;
-
-typedef int32_t int32;
-typedef uint32_t uint32;
-
-typedef int64_t int64;
-typedef uint64_t uint64;
-#endif
 
 typedef unsigned int uint;
 

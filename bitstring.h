@@ -18,9 +18,9 @@
 // $NoKeywords: $
 //=============================================================================//
 
+#pragma once
 #ifndef BITSTRING_H
 #define BITSTRING_H
-#pragma once
 
 class CUtlBuffer;
 
