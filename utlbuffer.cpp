@@ -1752,21 +1752,21 @@ uint8_t CUtlBuffer::GetUint8()
 {
 	// %u Scanf writes to a 32-bit number
 	uint32_t ub;
-	GET_TYPE( uint8_t, ub, PRIu32 );
+	GET_TYPE( uint8_t, ub, "%" PRIu32 );
 	return (uint8_t)ub;
 }
 
 uint64_t CUtlBuffer::GetUnsignedInt64()
 {
 	uint64_t ub;
-	GET_TYPE( uint64_t, ub, PRIu64 );
+	GET_TYPE( uint64_t, ub, "%" PRIu64 );
 	return ub;
 }
 
 int64_t CUtlBuffer::GetInt64()
 {
 	int64_t ub;
-	GET_TYPE( int64_t, ub, PRIi64 );
+	GET_TYPE( int64_t, ub, "%" PRIi64 );
 	return ub;
 }
 
@@ -1774,7 +1774,7 @@ int16_t CUtlBuffer::GetInt16()
 {
 	// %d Scanf writes to a 32-bit number
 	int32_t s16;
-	GET_TYPE( int16_t, s16, PRIi32 );
+	GET_TYPE( int16_t, s16, "%" PRIi32 );
 	return (int16_t)s16;
 }
 
