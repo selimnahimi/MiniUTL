@@ -71,6 +71,11 @@ public:
 	explicit CNumStr( double f )      { SetDouble( f ); }
 	explicit CNumStr( float f )       { SetFloat( f ); }
 
+	// XASH3DS:
+	// Additional constructors to fix ambiguity with CNumStr( int ) and CNumStr( unsigned int )
+	explicit CNumStr( int n32 )   { SetInt32( n32 ); }
+	explicit CNumStr( unsigned int un32 ) { SetUint32( un32 ); }
+
 #define NUMSTR_FAST_DIGIT( digit )					{ m_nLength = 1; m_szBuf[0] = '0' + ( digit ); m_szBuf[1] = 0; return m_szBuf; }
 #define NUMSTR_CHECK_FAST( val, utype )				if ( (utype)val < 10 ) NUMSTR_FAST_DIGIT( (utype)val )
 
